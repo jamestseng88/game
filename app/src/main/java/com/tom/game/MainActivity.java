@@ -16,6 +16,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private GameMap gameMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.bright).setOnClickListener(this);
         findViewById(R.id.bdown).setOnClickListener(this);
         findViewById(R.id.bleft).setOnClickListener(this);
-
+        gameMap = findViewById(R.id.gameview);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,15 +44,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.bup:
                 Log.d("MainActivity","onClick UP");
+                gameMap.setPosY(gameMap.getPosY() - 50);
+                gameMap.invalidate();
                 break;
             case R.id.bright:
                 Log.d("MainActivity","onClick RIGHT");
+                gameMap.setPosX(gameMap.getPosX() + 50);
+                gameMap.invalidate();
                 break;
                 case R.id.bleft:
                 Log.d("MainActivity","onClick LEFT");
+                    gameMap.setPosX(gameMap.getPosX() - 50);
+                    gameMap.invalidate();
                 break;
                 case R.id.bdown:
                 Log.d("MainActivity","onClick DOWN");
+                    gameMap.setPosY(gameMap.getPosY() + 50);
+                    gameMap.invalidate();
                 break;
         }
     }
